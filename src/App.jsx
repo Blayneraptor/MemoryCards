@@ -41,9 +41,9 @@ const App = () => {
 
   useEffect(() => {
     if (matchedCards.length === cards.length && cards.length > 0) {
-      setTimerRunning(false); // Pausar el tiempo al completar el juego
+      setTimerRunning(false);
       const newScore = { moves: moveCount, time: timeElapsed };
-      setLastScores((prev) => [newScore, ...prev].slice(0, 5)); // Guardar la puntuación
+      setLastScores((prev) => [newScore, ...prev].slice(0, 5));
     }
   }, [matchedCards, cards, moveCount, timeElapsed]);
 
@@ -81,7 +81,7 @@ const App = () => {
     setMoveCount(0);
     setTimeElapsed(0);
     setTimerRunning(true);
-    setIsIntroVisible(false);
+    setIsIntroVisible(false); // Esconde la pantalla de introducción al empezar
   };
 
   const formatTime = (seconds) => {
@@ -107,35 +107,64 @@ const App = () => {
     );
   };
 
+  // Encuentra el índice del récord con menos movimientos
+  const bestScoreIndex = lastScores.reduce(
+    (bestIndex, score, index, scores) =>
+      score.moves < scores[bestIndex]?.moves ? index : bestIndex,
+    0
+  );
+
   return (
-    <div className="game-container">
-      {isIntroVisible ? (
-        <div className="intro-screen">
-          <h1>¡Jugar a Memory Cards Blayne!</h1>
-          <button onClick={handleStart} className="start-button">
-            Empezar
-          </button>
-        </div>
-      ) : (
-        <>
-          <div className="sidebar">
-            <h2>Movimientos: {moveCount}</h2>
-            <h2>Tiempo: {formatTime(timeElapsed)}</h2>
-            {matchedCards.length === cards.length && (
-              <div className="win-message">
-                <h2>¡Felicidades, has ganado!</h2>
-                <p>
-                  Terminaste en {moveCount} movimientos con un tiempo de {formatTime(timeElapsed)}.
-                </p>
-                <button onClick={handleRestart} className="restart-button">
-                  Reiniciar Juego
-                </button>
-              </div>
-            )}
-            
+    <div className="app-container">
+      <div className="game-container">
+        {isIntroVisible ? (
+          <div className="intro-screen">
+            <h1>¡Jugar a Memory Cards Blayne!</h1>
+            <button onClick={handleStart} className="start-button">
+              Empezar
+            </button>
           </div>
-          <div className="card-grid">{cards.map((_, index) => renderCard(index))}</div>
-        </>
+        ) : (
+          <>
+            <div className="sidebar">
+              <h2>Movimientos: {moveCount}</h2>
+              <h2>Tiempo: {formatTime(timeElapsed)}</h2>
+              {matchedCards.length === cards.length && (
+                <div className="win-message">
+                  <h2>¡Felicidades, has ganado!</h2>
+                  <p>
+                    Terminaste en {moveCount} movimientos con un tiempo de {formatTime(timeElapsed)}.
+                  </p>
+                  <button onClick={handleRestart} className="restart-button">
+                    Reiniciar Juego
+                  </button>
+                </div>
+              )}
+            </div>
+            <div className="card-grid">{cards.map((_, index) => renderCard(index))}</div>
+          </>
+        )}
+      </div>
+
+      {/* Muestra los registros solo si el juego ha comenzado */}
+      {!isIntroVisible && (
+        <div className="records-container">
+          <h2>Records</h2>
+          <ul>
+            {lastScores.map((score, index) => (
+              <li
+                key={index}
+                style={{
+                  color: index === bestScoreIndex ? "#ffbf00" : "#fff", // Resalta el mejor puntaje
+                  fontWeight: index === bestScoreIndex ? "bold" : "normal",
+                }}
+              >
+                <strong>{index + 1}:</strong> Movimientos: {score.moves}, Tiempo: {formatTime(score.time)}
+              </li>
+            ))}
+            {lastScores.length === 0 && <p>No hay registros aún.</p>}
+          </ul>
+        </div>
       )}
     </div>
   );

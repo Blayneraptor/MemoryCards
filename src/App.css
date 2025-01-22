@@ -9,6 +9,7 @@ body {
   margin: 0;
   color: #fff;
 }
+
 h3 {
   font-size: 20px;
   font-weight: bold;
@@ -18,14 +19,11 @@ h3 {
 
 .game-container {
   text-align: center;
-  border-radius: 15px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  padding: 30px;
   background-color: rgba(255, 255, 255, 0.1);
-  padding: 45px;
-  position: relative;
-  width: 100%;
-  max-width: 800px;
-  transition: transform 0.2s ease-in-out;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  border-radius: 15px;
+  margin: 0 320px; /* Espacio para sidebar y records-container */
 }
 
 .intro-screen {
@@ -63,20 +61,20 @@ h3 {
 .card-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 15px;
+  gap: 40px;
   max-width: 600px;
   margin: 0 auto;
 }
 
 .card {
-  width: 100px;
-  height: 150px;
+  width: 120px; /* Aumenta el ancho de las cartas */
+  height: 180px; /* Aumenta la altura de las cartas */
   perspective: 1000px;
   transition: transform 0.2s;
 }
 
 .card:hover {
-  transform: scale(1.2);  /* Aumenta el tamaño de la carta al 110% */
+  transform: scale(1.15); /* Aumenta el tamaño de la carta al 110% */
 }
 
 .card-image {
@@ -95,7 +93,6 @@ h3 {
   transform: rotateY(0deg); /* Cuando no está volteada, muestra la parte de atrás */
 }
 
-
 .card-grid .card {
   cursor: pointer;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -105,67 +102,103 @@ h3 {
 .card-grid .card:hover {
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
+
+/* Sidebar a la izquierda */
 .sidebar {
-  position: relative;
-  left: 140px;
-  top: 10px;
-  margin-bottom:30px;
-  background-color: #ffffff;
+  position: fixed;
+  top: 25%;
+  left: 20px;
+  transform: translateY(-90%);
+  width: 330px;
+  background-color: #343766;
   padding: 15px;
   border-radius: 5px;
+  border: 1px solid #ccc;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  width: 250px;
+  color: #fff;
 }
 
 .sidebar h2 {
-  margin: 0 0 0px;
+  margin: 0 0 10px;
   font-size: 18px;
-  color: #333;
+  text-align: center;
 }
 
 .win-message {
-  margin-top: 5px;
-  text-align: left;
+  margin-top: 20px;
+  text-align: center;
 }
 
 .win-message h2 {
   font-size: 20px;
   color: #28a745;
-  margin-bottom: 15px;
-  margin-top: 10px;
-}
-
-.win-message p {
-  color:#000000;
-  margin: 20 20 20 20px;
-  font-size: 12px;
-  
+  margin-bottom: 10px;
 }
 
 .restart-button {
-  margin-left: 60px;
-  background-color: #007bff;
+  display: block;
+  margin: 10px auto;
+  background-color: #28a745; /* Cambié el color a verde para hacerlo más atractivo */
   color: #ffffff;
   border: none;
-  padding: 8px 12px;
-  font-size: 14px;
-  border-radius: 4px;
+  padding: 12px 24px;
+  font-size: 16px; /* Aumenté el tamaño de la fuente para hacerlo más legible */
+  border-radius: 8px; /* Borde más redondeado */
   cursor: pointer;
+  transition: all 0.3s ease; /* Efecto de transición suave */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra para dar profundidad */
 }
 
 .restart-button:hover {
-  background-color: #0056b3;
+  background-color: #218838; /* Color verde más oscuro al pasar el ratón */
+  transform: translateY(-2px); /* Efecto de elevar el botón al pasar el ratón */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Sombra más intensa al pasar el ratón */
 }
 
-.score-board ul {
-  padding: 0px;
+.restart-button:focus {
+  outline: none; /* Elimina el contorno del botón cuando está seleccionado */
+  box-shadow: 0 0 0 4px rgba(40, 167, 69, 0.5); /* Sombra de enfoque */
+}
+
+
+/* Records-container a la derecha */
+.records-container {
+  position: fixed;
+  top: 10%;
+  right: 20px;
+  transform: translateY(-50%);
+  width: 330px;
+  background-color: #343766;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 15px;
+  color: #fff;
+}
+
+.records-container h2 {
+  text-align: center;
+  font-size: 1.5rem;
+}
+
+.records-container ul {
   list-style-type: none;
+  padding: 0;
 }
 
-.score-board li {
-  font-size: 14px;
-  margin: 5px 0;
+.records-container li {
+  margin: 10px 0;
 }
+
+/* Contenedor principal */
+.app-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  position: relative;
+}
+
 @keyframes fadeIn {
   0% {
     opacity: 0;
@@ -174,4 +207,3 @@ h3 {
     opacity: 1;
   }
 }
-
