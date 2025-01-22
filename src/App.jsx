@@ -114,6 +114,16 @@ const App = () => {
     0
   );
 
+  const [gameFinished, setGameFinished] = useState(false);
+
+// Lógica para terminar el juego, por ejemplo, después de que el jugador gane:
+useEffect(() => {
+  if (matchedCards.length === cards.length && cards.length > 0) {
+    setGameFinished(true); // Marcar el juego como terminado
+  }
+}, [matchedCards, cards]);
+
+
   return (
     <div className="app-container">
       <div className="game-container">

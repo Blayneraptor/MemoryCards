@@ -208,17 +208,22 @@ h3 {
   }
 }
 
-/* Estilos responsivos */
+
+/* En móviles (pantallas de hasta 768px), ocultamos los records por defecto */
 @media (max-width: 768px) {
-  /* Ajustar el tamaño de las cartas en dispositivos pequeños */
+  .records-container {
+    display: none; /* Ocultar los records en móviles */
+  }
+
+  /* Ajustar el tamaño de las cartas y otros elementos para móviles */
   .card-grid {
     grid-template-columns: repeat(4, 1fr);
     gap: 10px;
   }
 
   .card {
-    width: 100px;
-    height: 150px;
+    width: 80px;
+    height: 120px;
   }
 
   .game-container {
