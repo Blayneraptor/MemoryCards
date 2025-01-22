@@ -212,8 +212,8 @@ h3 {
 @media (max-width: 768px) {
   /* Ajustar el tamaño de las cartas en dispositivos pequeños */
   .card-grid {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
   }
 
   .card {
@@ -247,37 +247,5 @@ h3 {
   .restart-button {
     padding: 10px 20px;
     font-size: 14px;
-  }
-}
-
-@media (max-width: 480px) {
-  /* Ajustar el tamaño de las cartas aún más en dispositivos muy pequeños */
-  .card-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 15px;
-  }
-
-  .card {
-    width: 80px;
-    height: 120px;
-  }
-
-  .game-container {
-    margin: 0 10px;
-    padding: 10px;
-  }
-
-  .intro-screen h1 {
-    font-size: 24px;
-  }
-
-  .start-button {
-    padding: 10px 20px;
-    font-size: 16px;
-  }
-
-  .restart-button {
-    padding: 8px 16px;
-    font-size: 12px;
   }
 }
