@@ -209,10 +209,10 @@ h3 {
 }
 
 
-/* En móviles (pantallas de hasta 768px), ocultamos los records por defecto */
+/* En móviles (pantallas de hasta 768px), los records estarán ocultos inicialmente */
 @media (max-width: 768px) {
   .records-container {
-    display: none; /* Ocultar los records en móviles */
+    display: none; /* Los records no se verán inicialmente */
   }
 
   /* Ajustar el tamaño de las cartas y otros elementos para móviles */
@@ -222,21 +222,50 @@ h3 {
   }
 
   .card {
-    width: 80px;
-    height: 120px;
+    width: 80px; /* Carta más pequeña */
+    height: 120px; /* Carta más pequeña */
   }
 
   .game-container {
-    margin: 0 20px;
+    
+  margin:0 20px 0 0px;
     padding: 15px;
   }
 
-  .sidebar, .records-container {
+  /* Mover el sidebar hacia la parte superior en móviles */
+  .sidebar {
+    position: fixed;
+    top: 100px; /* Aseguramos que esté en la parte superior */
+    left: 0%;
+    right: 0%;
+    width: 87%;
+    margin-top: 0; /* Eliminar margen adicional */
+  }
+
+  .win-message {
+    margin-top: 30rem;
+    text-align: center;
+  }
+  
+  .win-message h2 {
+    font-size: 20px;
+    color: #28a745;
+    margin-bottom: 10px;
+  }
+
+  /* Ajustar la visibilidad y la animación para mostrar los records */
+  .records-container.show {
+    display: block; /* Mostrar cuando el juego termine */
+    position: fixed;
+    top: 50%; /* Centrar en la pantalla */
+    left: 47%;
+    transform: translate(-50%, -50%);
     width: 90%;
-    left: 5%;
-    right: 5%;
-    transform: translateY(0);
-    margin-top: 10px;
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 20px;
+    border-radius: 10px;
+    color: white;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
   }
 
   /* Reducir el tamaño del texto en dispositivos pequeños */

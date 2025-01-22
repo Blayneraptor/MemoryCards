@@ -116,68 +116,59 @@ const App = () => {
 
   const [gameFinished, setGameFinished] = useState(false);
 
-// Lógica para terminar el juego, por ejemplo, después de que el jugador gane:
+// Lógica para cuando el juego termina
 useEffect(() => {
   if (matchedCards.length === cards.length && cards.length > 0) {
     setGameFinished(true); // Marcar el juego como terminado
   }
 }, [matchedCards, cards]);
 
-
-  return (
-    <div className="app-container">
-      <div className="game-container">
-        {isIntroVisible ? (
-          <div className="intro-screen">
-            <h1>¡Jugar a Memory Cards Blayne!</h1>
-            <button onClick={handleStart} className="start-button">
-              Empezar
-            </button>
-          </div>
-        ) : (
-          <>
-            <div className="sidebar">
-              <h2>Movimientos: {moveCount}</h2>
-              <h2>Tiempo: {formatTime(timeElapsed)}</h2>
-              {matchedCards.length === cards.length && (
-                <div className="win-message">
-                  <h2>¡Felicidades, has ganado!</h2>
-                  <p>
-                    Terminaste en {moveCount} movimientos con un tiempo de {formatTime(timeElapsed)}.
-                  </p>
-                  <button onClick={handleRestart} className="restart-button">
-                    Reiniciar Juego
-                  </button>
-                </div>
-              )}
-            </div>
-            <div className="card-grid">{cards.map((_, index) => renderCard(index))}</div>
-          </>
-        )}
-      </div>
-
-      {/* Muestra los registros solo si el juego ha comenzado */}
-      {!isIntroVisible && (
-        <div className="records-container">
-          <h2>Records</h2>
-          <ul>
-            {lastScores.map((score, index) => (
-              <li
-                key={index}
-                style={{
-                  color: index === bestScoreIndex ? "#ffbf00" : "#fff", // Resalta el mejor puntaje
-                  fontWeight: index === bestScoreIndex ? "bold" : "normal",
-                }}
-              >
-                <strong>{index + 1}:</strong> Movimientos: {score.moves}, Tiempo: {formatTime(score.time)}
-              </li>
-            ))}
-            {lastScores.length === 0 && <p>No hay registros aún.</p>}
-          </ul>
+return (
+  <div className="app-container">
+    <div className="game-container">
+      {isIntroVisible ? (
+        <div className="intro-screen">
+          <h1>¡Jugar a Memory Cards Blayne!</h1>
+          <button onClick={handleStart} className="start-button">
+            Empezar
+          </button>
         </div>
+      ) : (
+        <>
+          <div className="sidebar">
+            <h2>Movimientos: {moveCount}</h2>
+            <h2>Tiempo: {formatTime(timeElapsed)}</h2>
+            {matchedCards.length === cards.length && (
+              <div className="win-message">
+                <h2>¡Felicidades, has ganado!</h2>
+                <p>
+                  Terminaste en {moveCount} movimientos con un tiempo de {formatTime(timeElapsed)}.
+                </p>
+                <button onClick={handleRestart} className="restart-button">
+                  Reiniciar Juego
+                </button>
+              </div>
+            )}
+          </div>
+          <div className="card-grid">{cards.map((_, index) => renderCard(index))}</div>
+        </>
       )}
     </div>
-  );
+
+    {/* Mostrar los records solo cuando el juego haya terminado */}
+    <div className={`records-container ${gameFinished ? 'show' : ''}`}>
+      <h2>Records</h2>
+      <ul>
+        {lastScores.map((score, index) => (
+          <li key={index}>
+            <strong>{index + 1}:</strong> Movimientos: {score.moves}, Tiempo: {formatTime(score.time)}
+          </li>
+        ))}
+        {lastScores.length === 0 && <p>No hay registros aún.</p>}
+      </ul>
+    </div>
+  </div>
+);
 };
 
 export default App;
