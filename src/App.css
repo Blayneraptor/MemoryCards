@@ -9,6 +9,12 @@ body {
   margin: 0;
   color: #fff;
 }
+h3 {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 30px;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+}
 
 .game-container {
   text-align: center;
@@ -99,33 +105,67 @@ body {
 .card-grid .card:hover {
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
+.sidebar {
+  position: relative;
+  left: 140px;
+  top: 10px;
+  margin-bottom:30px;
+  background-color: #ffffff;
+  padding: 15px;
+  border-radius: 5px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: 250px;
+}
+
+.sidebar h2 {
+  margin: 0 0 0px;
+  font-size: 18px;
+  color: #333;
+}
 
 .win-message {
-  margin-top: 20px;
-  font-size: 28px;
-  font-weight: bold;
-  color: #81c784;
-  animation: fadeIn 1s ease-in-out;
+  margin-top: 5px;
+  text-align: left;
+}
+
+.win-message h2 {
+  font-size: 20px;
+  color: #28a745;
+  margin-bottom: 15px;
+  margin-top: 10px;
+}
+
+.win-message p {
+  color:#000000;
+  margin: 20 20 20 20px;
+  font-size: 12px;
+  
 }
 
 .restart-button {
-  margin-top: 20px;
-  padding: 15px 30px;
-  font-size: 20px;
-  cursor: pointer;
-  background-color: #4caf50;
-  color: white;
+  margin-left: 60px;
+  background-color: #007bff;
+  color: #ffffff;
   border: none;
-  border-radius: 8px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-  transition: background-color 0.3s ease, transform 0.2s;
+  padding: 8px 12px;
+  font-size: 14px;
+  border-radius: 4px;
+  cursor: pointer;
 }
 
 .restart-button:hover {
-  background-color: #388e3c;
-  transform: translateY(-3px);
+  background-color: #0056b3;
 }
 
+.score-board ul {
+  padding: 0px;
+  list-style-type: none;
+}
+
+.score-board li {
+  font-size: 14px;
+  margin: 5px 0;
+}
 @keyframes fadeIn {
   0% {
     opacity: 0;

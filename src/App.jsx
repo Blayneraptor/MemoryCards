@@ -26,10 +26,26 @@ const App = () => {
   const [flippedCards, setFlippedCards] = useState([]);
   const [matchedCards, setMatchedCards] = useState([]);
   const [isIntroVisible, setIsIntroVisible] = useState(true);
+  const [moveCount, setMoveCount] = useState(0);
+  const [timeElapsed, setTimeElapsed] = useState(0);
+  const [timerRunning, setTimerRunning] = useState(false);
+  const [lastScores, setLastScores] = useState([]);
 
   useEffect(() => {
-    setCards(shuffleArray(cardImages));
-  }, []);
+    let timer;
+    if (timerRunning) {
+      timer = setInterval(() => setTimeElapsed((prev) => prev + 1), 1000);
+    }
+    return () => clearInterval(timer);
+  }, [timerRunning]);
+
+  useEffect(() => {
+    if (matchedCards.length === cards.length && cards.length > 0) {
+      setTimerRunning(false); // Pausar el tiempo al completar el juego
+      const newScore = { moves: moveCount, time: timeElapsed };
+      setLastScores((prev) => [newScore, ...prev].slice(0, 5)); // Guardar la puntuación
+    }
+  }, [matchedCards, cards, moveCount, timeElapsed]);
 
   const handleCardClick = (index) => {
     if (flippedCards.length === 2 || flippedCards.includes(index) || matchedCards.includes(index)) return;
@@ -38,13 +54,40 @@ const App = () => {
     setFlippedCards(newFlippedCards);
 
     if (newFlippedCards.length === 2) {
+      setMoveCount((prev) => prev + 1);
+
       const [first, second] = newFlippedCards;
       if (cards[first] === cards[second]) {
         setMatchedCards((prev) => [...prev, first, second]);
-        // No hay espera, puedes hacer clic de nuevo rápidamente
       }
-      setTimeout(() => setFlippedCards([]), 500); // Reducir el tiempo de espera a 500 ms
+      setTimeout(() => setFlippedCards([]), 500);
     }
+  };
+
+  const handleRestart = () => {
+    setCards(shuffleArray(cardImages));
+    setFlippedCards([]);
+    setMatchedCards([]);
+    setMoveCount(0);
+    setTimeElapsed(0);
+    setTimerRunning(false);
+    setIsIntroVisible(true);
+  };
+
+  const handleStart = () => {
+    setCards(shuffleArray(cardImages));
+    setFlippedCards([]);
+    setMatchedCards([]);
+    setMoveCount(0);
+    setTimeElapsed(0);
+    setTimerRunning(true);
+    setIsIntroVisible(false);
+  };
+
+  const formatTime = (seconds) => {
+    const mins = Math.floor(seconds / 60);
+    const secs = seconds % 60;
+    return `${mins} min y ${secs} seg`;
   };
 
   const renderCard = (index) => {
@@ -64,29 +107,34 @@ const App = () => {
     );
   };
 
-  const handleRestart = () => {
-    setCards(shuffleArray(cardImages));
-    setFlippedCards([]);
-    setMatchedCards([]);
-    setIsIntroVisible(true);
-  };
-
   return (
     <div className="game-container">
       {isIntroVisible ? (
         <div className="intro-screen">
           <h1>¡Jugar a Memory Cards Blayne!</h1>
-          <button onClick={() => setIsIntroVisible(false)} className="start-button">Empezar</button>
+          <button onClick={handleStart} className="start-button">
+            Empezar
+          </button>
         </div>
       ) : (
         <>
+          <div className="sidebar">
+            <h2>Movimientos: {moveCount}</h2>
+            <h2>Tiempo: {formatTime(timeElapsed)}</h2>
+            {matchedCards.length === cards.length && (
+              <div className="win-message">
+                <h2>¡Felicidades, has ganado!</h2>
+                <p>
+                  Terminaste en {moveCount} movimientos con un tiempo de {formatTime(timeElapsed)}.
+                </p>
+                <button onClick={handleRestart} className="restart-button">
+                  Reiniciar Juego
+                </button>
+              </div>
+            )}
+            
+          </div>
           <div className="card-grid">{cards.map((_, index) => renderCard(index))}</div>
-          {matchedCards.length === cards.length && (
-            <div className="win-message">
-              <h2>¡Felicidades, has ganado!</h2>
-              <button onClick={handleRestart} className="restart-button">Reiniciar Juego</button>
-            </div>
-          )}
         </>
       )}
     </div>
