@@ -2,14 +2,14 @@ import React, { useState, useEffect } from "react";
 import "./App.css";
 
 const cardImages = [
-  "carta1.png",
-  "carta2.png",
-  "carta3.png",
-  "carta4.png",
-  "carta5.png",
-  "carta6.png",
-  "carta7.png",
-  "carta8.png",
+  "carta1.PNG",
+  "carta2.PNG",
+  "carta3.PNG",
+  "carta4.PNG",
+  "carta5.PNG",
+  "carta6.PNG",
+  "carta7.PNG",
+  "carta8.PNG",
 ];
 
 const shuffleArray = (array) => {
@@ -56,7 +56,7 @@ const App = () => {
         onClick={() => handleCardClick(index)}
       >
         <img
-          src={process.env.PUBLIC_URL + "/images/" + (isFlipped ? cards[index] : "cartaback.png")}
+          src={process.env.PUBLIC_URL + "/images/" + (isFlipped ? cards[index] : "cartaback.PNG")}
           alt="card"
           className="card-image"
         />
