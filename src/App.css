@@ -214,7 +214,16 @@ h3 {
 
 /* En móviles (pantallas de hasta 768px), los records estarán ocultos inicialmente */
 @media (max-width: 768px) {
-  
+  body {
+    overflow: hidden; /* Elimina el desplazamiento en móviles */
+  }
+
+  .app-container {
+    height: 100vh; /* Asegura que ocupe toda la pantalla */
+    width: 100vw;  /* Asegura que ocupe todo el ancho */
+    overflow: hidden; /* Evita el desplazamiento */
+  }
+
 
   /* Ajustar el tamaño de las cartas y otros elementos para móviles */
   .card-grid {
