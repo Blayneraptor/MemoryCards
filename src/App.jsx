@@ -72,6 +72,7 @@ const App = () => {
     setTimeElapsed(0);
     setTimerRunning(false);
     setIsIntroVisible(true);
+    setShowRecords(false); // Oculta los records cuando se reinicia el juego
   };
 
   const handleStart = () => {
@@ -113,7 +114,13 @@ const App = () => {
       score.moves < scores[bestIndex]?.moves ? index : bestIndex,
     0
   );
+  const [showRecords, setShowRecords] = useState(false);
 
+  useEffect(() => {
+    if (matchedCards.length === cards.length && cards.length > 0) {
+      setShowRecords(true); // Muestra los records cuando el juego termina
+    }
+  }, [matchedCards, cards]);
 
   return (
     <div className="app-container"
@@ -155,8 +162,8 @@ const App = () => {
         )}
       </div>
 
-      {/* Muestra los registros solo si el juego ha comenzado */}
-      {!isIntroVisible && (
+      {/* Muestra los registros solo si el juego ha comenzado y si showRecords es true */}
+    {!isIntroVisible && showRecords && (
         <div className="records-container">
           <h2>Records</h2>
           <ul>
