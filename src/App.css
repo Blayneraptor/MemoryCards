@@ -1,7 +1,8 @@
 /* Estilo general */
 body {
   font-family: 'Poppins', sans-serif;
-  background: linear-gradient(to right, #6a11cb, #2575fc);
+ 
+  background-size: cover;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -9,6 +10,8 @@ body {
   margin: 0;
   color: #fff;
 }
+
+
 
 h3 {
   font-size: 20px;
@@ -20,7 +23,7 @@ h3 {
 .game-container {
   text-align: center;
   padding: 30px;
-  background-color: rgba(255, 255, 255, 0.1);
+  background-color: rgba(81, 65, 85, 0.685);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
   border-radius: 15px;
   margin: 0 320px; /* Espacio para sidebar y records-container */
@@ -110,7 +113,7 @@ h3 {
   left: 20px;
   transform: translateY(-90%);
   width: 330px;
-  background-color: #343766;
+  background-color: rgba(81, 65, 85, 0.685);
   padding: 15px;
   border-radius: 5px;
   border: 1px solid #ccc;
@@ -168,7 +171,7 @@ h3 {
   right: 20px;
   transform: translateY(-50%);
   width: 330px;
-  background-color: #343766;
+  background-color: rgba(40, 41, 61, 0.582);
   border: 1px solid #ccc;
   border-radius: 5px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -259,7 +262,7 @@ h3 {
     left: 50%;
     transform: translate(-50%, -50%);
     width: 70%; /* Disminuir el ancho para que sea más pequeño */
-    background-color: rgba(0, 0, 0, 0.3);
+    background-color: rgba(40, 41, 61, 0.582);
     padding: 10px; /* Reducir el padding para más compacidad */
     border-radius: 8px; /* Redondear menos los bordes */
     color: white;

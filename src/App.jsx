@@ -116,7 +116,15 @@ const App = () => {
 
 
   return (
-    <div className="app-container">
+    <div className="app-container"
+    style={{
+      backgroundImage: "url('./images/bg.jpg')",
+      backgroundSize: "cover",  // Asegura que la imagen cubra toda el área sin distorsionarse
+      backgroundPosition: "center",  // Centra la imagen
+      height: "100vh",  // Hace que ocupe toda la altura de la ventana
+      width: "100vw",   // Hace que ocupe toda la anchura de la ventana
+    }}
+  >
       <div className="game-container">
         {isIntroVisible ? (
           <div className="intro-screen">
