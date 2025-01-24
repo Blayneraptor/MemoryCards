@@ -30,6 +30,7 @@ const App = () => {
   const [timeElapsed, setTimeElapsed] = useState(0);
   const [timerRunning, setTimerRunning] = useState(false);
   const [lastScores, setLastScores] = useState([]);
+  const [introAnimationCompleted, setIntroAnimationCompleted] = useState(false);
 
   useEffect(() => {
     let timer;
@@ -72,7 +73,7 @@ const App = () => {
     setTimeElapsed(0);
     setTimerRunning(false);
     setIsIntroVisible(true);
-    setShowRecords(false); // Oculta los records cuando se reinicia el juego
+    setIntroAnimationCompleted(false);
   };
 
   const handleStart = () => {
@@ -82,7 +83,8 @@ const App = () => {
     setMoveCount(0);
     setTimeElapsed(0);
     setTimerRunning(true);
-    setIsIntroVisible(false); // Esconde la pantalla de introducción al empezar
+    setIsIntroVisible(false);
+    setIntroAnimationCompleted(true);
   };
 
   const formatTime = (seconds) => {
@@ -114,27 +116,29 @@ const App = () => {
       score.moves < scores[bestIndex]?.moves ? index : bestIndex,
     0
   );
+
   const [showRecords, setShowRecords] = useState(false);
 
   useEffect(() => {
     if (matchedCards.length === cards.length && cards.length > 0) {
-      setShowRecords(true); // Muestra los records cuando el juego termina
+      setShowRecords(true);
     }
   }, [matchedCards, cards]);
 
   return (
-    <div className="app-container"
-    style={{
-      backgroundImage: "url('./images/bg.jpg')",
-      backgroundSize: "cover",  // Asegura que la imagen cubra toda el área sin distorsionarse
-      backgroundPosition: "center",  // Centra la imagen
-      height: "100vh",  // Hace que ocupe toda la altura de la ventana
-      width: "100vw",   // Hace que ocupe toda la anchura de la ventana
-    }}
-  >
+    <div
+      className="app-container"
+      style={{
+        backgroundImage: "url('./images/bg.jpg')",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        height: "100vh",
+        width: "100vw",
+      }}
+    >
       <div className="game-container">
         {isIntroVisible ? (
-          <div className="intro-screen">
+          <div className={`intro-screen ${introAnimationCompleted ? "fade-in" : ""}`}>
             <h1>¡Jugar a Memory Cards Blayne!</h1>
             <button onClick={handleStart} className="start-button">
               Empezar
@@ -162,8 +166,7 @@ const App = () => {
         )}
       </div>
 
-      {/* Muestra los registros solo si el juego ha comenzado y si showRecords es true */}
-    {!isIntroVisible && showRecords && (
+      {!isIntroVisible && showRecords && (
         <div className="records-container">
           <h2>Records</h2>
           <ul>
@@ -171,7 +174,7 @@ const App = () => {
               <li
                 key={index}
                 style={{
-                  color: index === bestScoreIndex ? "#ffbf00" : "#fff", // Resalta el mejor puntaje
+                  color: index === bestScoreIndex ? "#ffbf00" : "#fff",
                   fontWeight: index === bestScoreIndex ? "bold" : "normal",
                 }}
               >
