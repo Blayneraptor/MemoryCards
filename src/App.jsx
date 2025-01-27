@@ -85,6 +85,11 @@ const App = () => {
     setTimerRunning(true);
     setIsIntroVisible(false);
     setIntroAnimationCompleted(true);
+  
+    // Esperamos un poco antes de mostrar las cartas
+    setTimeout(() => {
+      document.querySelector(".card-grid").classList.add("show");
+    }, 200); // Espera a que la intro se haya desvanecido
   };
 
   const formatTime = (seconds) => {

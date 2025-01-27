@@ -1,7 +1,6 @@
 /* Estilo general */
 body {
   font-family: 'Poppins', sans-serif;
- 
   background-size: cover;
   display: flex;
   justify-content: center;
@@ -10,8 +9,6 @@ body {
   margin: 0;
   color: #fff;
 }
-
-
 
 h3 {
   font-size: 20px;
@@ -63,12 +60,30 @@ h3 {
   transform: translateY(-3px);
 }
 
+/* Animación de desvanecimiento y deslizamiento */
+.intro-screen {
+  opacity: 1;
+  transition: opacity 1s ease-in-out;
+}
+
+.fade-in {
+  opacity: 0;
+}
+
 .card-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 40px;
   max-width: 600px;
   margin: 0 auto;
+  opacity: 0;
+  transform: translateX(0); /* Comienza desde el lado derecho */
+  transition: opacity 1s ease-in-out, transform 1s ease-in-out;
+}
+
+.card-grid.show {
+  opacity:1;
+  transform: translateX(0); /* Desliza las cartas a su posición original */
 }
 
 .card {
@@ -152,7 +167,6 @@ h3 {
   cursor: pointer;
   transition: all 0.3s ease; /* Efecto de transición suave */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra para dar profundidad */
-  
 }
 
 .restart-button:hover {
@@ -165,7 +179,6 @@ h3 {
   outline: none; /* Elimina el contorno del botón cuando está seleccionado */
   box-shadow: 0 0 0 4px rgba(40, 167, 69, 0.5); /* Sombra de enfoque */
 }
-
 
 /* Records-container a la derecha */
 .records-container {
@@ -214,7 +227,6 @@ h3 {
   }
 }
 
-
 /* En móviles (pantallas de hasta 768px), los records estarán ocultos inicialmente */
 @media (max-width: 768px) {
   body {
@@ -228,25 +240,20 @@ h3 {
     position: relative;  /* Necesario para que el botón se posicione en relación con el contenedor */
   }
 
-
   /* Ajustar el tamaño de las cartas y otros elementos para móviles */
   .card-grid {
     grid-template-columns: repeat(4, 1fr);
     gap: 10px;
-    
   }
 
   .card {
     width: 80px; /* Carta más pequeña */
     height: 120px; /* Carta más pequeña */
-    
   }
 
   .game-container {
-    
-  margin:0 0 0 0px;
+    margin: 0 0 0 0px;
     padding: 15px;
-    
   }
 
   /* Mover el sidebar hacia la parte superior en móviles */
@@ -258,9 +265,9 @@ h3 {
     width: 100%;
     margin-top: 0; /* Eliminar margen adicional */
     border: 1px solid #cccccc00;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  color: #fff;
-  z-index: 1; /* Esto coloca las cartas detrás del botón */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    color: #fff;
+    z-index: 1; /* Esto coloca las cartas detrás del botón */
   }
 
   .sidebar h2 {
@@ -277,7 +284,7 @@ h3 {
     padding: 0px;
     text-align: center;
   }
-  
+
   .win-message h2 {
     font-size: 20px;
     color: #28a745;
@@ -300,19 +307,22 @@ h3 {
     font-size: 14px; /* Reducir el tamaño de la fuente */
     text-align: center;
   }
+
   .records-container ul {
-     margin-top: -15px;
+    margin-top: -15px;
   }
 
   .records-container li {
     width: 100%;
     font-size: 0.7rem;
   }
+
   .records-container h2 {
     text-align: center;
     font-size: 1.2rem;
     margin-top: 0px; /* Reducir el margen superior */
   }
+
   .records-container.show {
     display: block; /* Mostrar cuando se termina el juego */
     position: absolute;
@@ -325,7 +335,7 @@ h3 {
     color: #ffffffc0;
     width: 80%; /* Ajuste de tamaño */
   }
-  
+
   /* Reducir el tamaño del texto en dispositivos pequeños */
   .intro-screen h1 {
     font-size: 38px;
@@ -337,8 +347,8 @@ h3 {
   }
 
   .restart-button {
-    position: absolute;  /* Para que el botón esté dentro de app-container */
-    top: 200%;  /* Centrado verticalmente */
+    position: absolute; /* Para que el botón esté dentro de app-container */
+    top: 200%; /* Centrado verticalmente */
     left: 50%; /* Centrado horizontalmente */
     transform: translate(-60%, -50%); /* Ajuste exacto para que esté centrado */
     font-size: 1.5rem;
