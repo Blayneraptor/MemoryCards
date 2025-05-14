@@ -2,6 +2,7 @@
 const useSound = () => {
   // Create audio context when needed (to avoid autoplay restrictions)
   let audioContext = null;
+  let muted = localStorage.getItem('memoryGameMuted') === 'true';
 
   const initAudio = () => {
     if (audioContext === null) {
@@ -10,8 +11,18 @@ const useSound = () => {
     return audioContext;
   };
 
+  // Function to toggle mute state
+  const toggleMute = () => {
+    muted = !muted;
+    localStorage.setItem('memoryGameMuted', muted);
+    return muted;
+  };
+
   // Synthesize sounds programmatically
   const playSound = (type) => {
+    // Don't play sound if muted
+    if (muted) return;
+
     try {
       const context = initAudio();
       const oscillator = context.createOscillator();
@@ -145,10 +156,13 @@ const useSound = () => {
       }
     } catch (error) {
       console.log("Sound error:", error);
-    }
-  };
+    }  };
 
-  return { playSound };
+  return {
+    playSound,
+    toggleMute,
+    isMuted: muted
+  };
 };
 
 export default useSound;

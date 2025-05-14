@@ -48,11 +48,11 @@ const App = () => {  // Estados principales del juego
   const [isTwoPlayerMode, setIsTwoPlayerMode] = useState(false);
   const [currentPlayer, setCurrentPlayer] = useState(1);
   const [playerScores, setPlayerScores] = useState({ player1: 0, player2: 0 });
-  
-  // Referencias
+    // Referencias
   const confettiRef = useRef(null);
   const windowSize = useWindowSize();
-  const { playSound } = useSound();
+  const { playSound, toggleMute, isMuted } = useSound();
+  // eslint-disable-next-line no-unused-vars
   const isMobile = windowSize.width <= 768;
 
   // Custom hook para obtener el tamaño de la ventana
@@ -90,9 +90,9 @@ const App = () => {  // Estados principales del juego
   useEffect(() => {
     if (matchedCards.length === cards.length && cards.length > 0) {
       setTimerRunning(false);
-      
-      if (isTwoPlayerMode) {
+        if (isTwoPlayerMode) {
         // Determine winner
+        // eslint-disable-next-line no-unused-vars
         const winner = playerScores.player1 > playerScores.player2 ? 1 : 
                        playerScores.player1 < playerScores.player2 ? 2 : 0; // 0 = draw
         
@@ -292,22 +292,37 @@ const App = () => {  // Estados principales del juego
           recycle={false}
           numberOfPieces={400}
           ref={confettiRef}
-        />      )}        {/* Player Status in Two-Player Mode */}
+        />      )}      {/* Player Status in Two-Player Mode */}
       {!isIntroVisible && isTwoPlayerMode && <PlayerStatus />}
       
-      {/* Reset Button outside of game container */}
+      {/* Reset Button and Sound Toggle Button outside of game container */}
       {!isIntroVisible && (
-        <motion.button
-          className="reset-button"
-          onClick={handleRestart}
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.5, duration: 0.3 }}
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-        >
-          Reiniciar Juego
-        </motion.button>      )}
+        <>
+          <motion.button
+            className="reset-button"
+            onClick={handleRestart}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.5, duration: 0.3 }}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            Reiniciar Juego
+          </motion.button>
+          
+          <motion.button
+            className="sound-toggle-button"
+            onClick={toggleMute}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.5, duration: 0.3 }}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            {isMuted ? '🔇' : '🔊'}
+          </motion.button>
+        </>
+      )}
 
       <div className="game-container">
         {isIntroVisible ? (

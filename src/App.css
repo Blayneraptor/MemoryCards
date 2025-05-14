@@ -348,12 +348,39 @@ body {
   z-index: 200;
 }
 
+.sound-toggle-button {
+  position: fixed;
+  bottom: 21px;
+  right: 200px; /* Positioned to the left of reset button */
+  padding: 0.4rem 0.5rem;
+  font-size: 1.2rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 25px;
+  background: linear-gradient(135deg, var(--info-color), var(--primary-color));
+  color: var(--text-color);
+  cursor: pointer;
+  box-shadow: var(--button-shadow);
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 @media (max-width: 768px) {
   .reset-button {
     padding: 0.6rem 1rem;
     font-size: 0.9rem;
     bottom: 15px;
     right: 15px;
+  }
+  
+  .sound-toggle-button {
+    padding: 0.2rem 0.4rem;
+    font-size: 1.1rem;
+    bottom: 18px;
+    right: 170px;
   }
 }
 
