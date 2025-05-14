@@ -1,0 +1,33 @@
+/* Añadir estos estilos al final de App.css */
+
+/* Ajustes específicos para garantizar que la UI sea consistente en ambas orientaciones */
+@media (max-width: 768px) {
+  /* Asegurarse que los textos se vean correctamente en la rotación */
+  .game-container.player2-turn .game-info-value,
+  .game-container.player2-turn .game-info-item span {
+    display: inline-block;
+    transform: rotate(180deg);
+  }
+
+  /* Mejorar el posicionamiento del game-info en modo player2 */
+  .game-container.player2-turn .game-info {
+    position: absolute;
+    top: auto;
+    bottom: 0;
+    transform: rotate(180deg);
+  }
+
+  /* Ajustar el espaciado de las cartas */
+  .game-container.player2-turn .card-grid {
+    transform: rotate(180deg);
+    margin-top: 0;
+    margin-bottom: 130px;
+  }
+
+  /* Asegurar que el botón de reinicio se vea correctamente */
+  .game-container.player2-turn ~ .reset-button {
+    transform: rotate(180deg);
+    top: 15px;
+    bottom: auto;
+  }
+}
