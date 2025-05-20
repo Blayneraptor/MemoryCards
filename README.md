@@ -1,70 +1,86 @@
-# Getting Started with Create React App
+# 🃏 Memory Cards Blayne
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+![Memory Cards](https://img.shields.io/badge/Memory-Cards-7c4dff?style=for-the-badge&logo=react&logoColor=white)
+![Version](https://img.shields.io/badge/Versión-1.0-ff4081?style=for-the-badge)
+![Estado](https://img.shields.io/badge/Estado-Completo-00c853?style=for-the-badge)
 
-## Available Scripts
+<div align="center">
+  <img src="public/images/cartaback.PNG" alt="Memory Cards Logo" width="150"/>
+</div>
 
-In the project directory, you can run:
+## 📝 Descripción
 
-### `npm start`
+**Memory Cards** es un juego de memoria interactivo desarrollado con React. Pon a prueba tus habilidades cognitivas encontrando pares de cartas idénticas en la menor cantidad de movimientos posible. Con una interfaz elegante y dinámica, este juego ofrece desafío y diversión para todas las edades.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## 🎮 Características Principales
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- ✨ **Interfaz moderna** con animaciones fluidas
+- 🔄 **Dos modos de juego**: Individual y Multijugador
+- 🏆 **Sistema de puntuación** que registra tus mejores resultados
+- ⏱️ **Contador de tiempo y movimientos** para medir tu rendimiento
+- 🔊 **Efectos de sonido** activables/desactivables
+- 🎉 **Animaciones de victoria** con confetti
+- 📱 **Diseño responsivo** adaptado a todo tipo de dispositivos
 
-### `npm test`
+## 🎯 Cómo Jugar
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+1. **Inicia el juego** seleccionando el modo de un jugador o dos jugadores
+2. **Memoriza** la ubicación de las cartas mientras las volteas
+3. **Encuentra** los pares coincidentes en la menor cantidad de movimientos posible
+4. **Compite** contra tus récords anteriores (modo individual) o contra otro jugador
+5. **Celebra** tu victoria con una animación de confetti al completar el tablero
 
-### `npm run build`
+## 👥 Modos de Juego
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### 🧩 Modo Un Jugador
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+En el modo individual, el objetivo es encontrar todos los pares en la menor cantidad de movimientos posibles. El juego guarda tus mejores puntuaciones para que puedas intentar superar tus propios récords.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### 🏆 Modo Dos Jugadores
 
-### `npm run eject`
+¡Compite contra un amigo! Los jugadores se turnan para encontrar pares. Cada par encontrado suma un punto al jugador activo. El jugador con más puntos al final del juego gana.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## 🔧 Controles
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- **Clic/Tap en cartas**: Voltear cartas
+- **Botón de reinicio**: Iniciar un nuevo juego
+- **Botón de sonido**: Activar/desactivar efectos sonoros
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## 💻 Instalación y Ejecución
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+1. Clona este repositorio:
 
-## Learn More
+   ```bash
+   git clone https://github.com/tu-usuario/memory-cards.git
+   cd memory-cards
+   ```
+2. Instala las dependencias:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+   ```bash
+   npm install
+   ```
+3. Inicia el juego:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+   ```bash
+   npm start
+   ```
+4. Abre [http://localhost:3000](http://localhost:3000) en tu navegador
 
-### Code Splitting
+## 🛠️ Tecnologías Utilizadas
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+- **React**: Framework principal
+- **Framer Motion**: Animaciones fluidas
+- **Web Audio API**: Efectos de sonido generados dinámicamente
+- **CSS Avanzado**: Diseño responsive con variables CSS
 
-### Analyzing the Bundle Size
+## 📸 Capturas de Pantalla
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+<div align="center">
+  <p><em>Pantalla de inicio del juego</em></p>
+  <p><em>Tablero de juego</em></p>
+  <p><em>Celebración de victoria</em></p>
+</div>
 
-### Making a Progressive Web App
+## 👨‍💻 Desarrollado por
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+**Blayne** - *Desarrollador principal* - [GitHub](https://github.com/tu-usuario)
